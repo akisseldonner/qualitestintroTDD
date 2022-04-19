@@ -25,21 +25,26 @@ public class NewEmptyJUnitTest {
     
      ArrayList<Boleto> boletos = new ArrayList<>();
     public void adicionarBoletos(Boleto boleto){
-        boletos.add(boleto);
-        
-        
+        boletos.add(boleto);  
     }
-    public void testeQtdBoletosFatura(){
+    
+    @Test
+    public void teste1BoletoNaFatura(){
          // verificar se a fatura só tem 1 boleto
          // instanciar o objeto boleto
          // colocar o objeto boleto na fatura
          // realizar o teste
          Fatura faturaX = new Fatura();
+         faturaX.setValor(25.00);
          Boleto boletoX = new Boleto();
-         faturaX.adicionarBoletos(boletoX);
+         boletoX.setValor(25.00);
+         processadorDeBoletos.processarBoleto(boletos);
+         assertTrue(faturaX.isEstaPago());
          
+         assertEquals(faturaX.getPagamentos().size(), 1);
+         assertEquals(faturaX.getPagamentos().get(0).getTipo(),"boleto");
          
-         
+        
          
     }
     
